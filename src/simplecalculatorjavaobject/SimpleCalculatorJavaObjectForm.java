@@ -8,6 +8,8 @@
 // PACOTE DA CLASSE:
 package simplecalculatorjavaobject;
 
+import javax.swing.JOptionPane;
+
 
 // MÉTODO PRINCIPAL DA CLASSE:
 public class SimpleCalculatorJavaObjectForm extends javax.swing.JFrame {
@@ -30,23 +32,193 @@ public class SimpleCalculatorJavaObjectForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txt_painel_principal = new javax.swing.JPanel();
+        txt_botao_limpar_e_liberar = new javax.swing.JButton();
+        txt_botao_calcular = new javax.swing.JButton();
+        txt_campo_resultado = new javax.swing.JLabel();
+        txt_operacao = new javax.swing.JComboBox<>();
+        txt_campo_valor1 = new javax.swing.JTextField();
+        txt_campo_valor2 = new javax.swing.JTextField();
+        txt_campo_radiciacao = new javax.swing.JTextField();
+        txt_campo_potencia_base = new javax.swing.JTextField();
+        txt_campo_potencia_expoente = new javax.swing.JTextField();
+        txt_barra_de_menu_principal = new javax.swing.JMenuBar();
+        txt_menu_geral = new javax.swing.JMenu();
+        txt_sub_item_sair = new javax.swing.JMenuItem();
+        txt_menu_sobre = new javax.swing.JMenu();
+        txt_sub_item_info = new javax.swing.JMenuItem();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CALCULADORA SIMPLES");
+        setResizable(false);
+
+        txt_painel_principal.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "- EXIBIÇÃO GERAL -", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+
+        txt_botao_limpar_e_liberar.setBackground(new java.awt.Color(153, 153, 255));
+        txt_botao_limpar_e_liberar.setText("LIMPAR E LIBERAR");
+        txt_botao_limpar_e_liberar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        txt_botao_limpar_e_liberar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_botao_limpar_e_liberarActionPerformed(evt);
+            }
+        });
+
+        txt_botao_calcular.setBackground(new java.awt.Color(153, 255, 153));
+        txt_botao_calcular.setText("CALCULAR");
+        txt_botao_calcular.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        txt_botao_calcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_botao_calcularActionPerformed(evt);
+            }
+        });
+
+        txt_campo_resultado.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "- RESULTADO -", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+
+        txt_operacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        txt_operacao.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "- OPERAÇÃO -", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+
+        txt_campo_valor1.setToolTipText("");
+        txt_campo_valor1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "- VALOR 001 -", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+
+        txt_campo_valor2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "- VALOR 002 -", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+
+        txt_campo_radiciacao.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "- RADICIAÇÃO -", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+
+        txt_campo_potencia_base.setToolTipText("");
+        txt_campo_potencia_base.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "- POTENCIA - [ BAS ] -", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+
+        txt_campo_potencia_expoente.setToolTipText("");
+        txt_campo_potencia_expoente.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "- POTENCIA - [ EXP ] -", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+
+        javax.swing.GroupLayout txt_painel_principalLayout = new javax.swing.GroupLayout(txt_painel_principal);
+        txt_painel_principal.setLayout(txt_painel_principalLayout);
+        txt_painel_principalLayout.setHorizontalGroup(
+            txt_painel_principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(txt_painel_principalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(txt_painel_principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(txt_painel_principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(txt_painel_principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(txt_painel_principalLayout.createSequentialGroup()
+                                .addComponent(txt_campo_valor1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)
+                                .addComponent(txt_campo_valor2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(txt_painel_principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txt_botao_limpar_e_liberar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txt_campo_resultado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(txt_painel_principalLayout.createSequentialGroup()
+                                    .addComponent(txt_botao_calcular, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                                    .addComponent(txt_operacao, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(txt_campo_radiciacao))
+                    .addGroup(txt_painel_principalLayout.createSequentialGroup()
+                        .addComponent(txt_campo_potencia_base, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txt_campo_potencia_expoente, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        txt_painel_principalLayout.setVerticalGroup(
+            txt_painel_principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, txt_painel_principalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txt_campo_resultado, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(86, 86, 86)
+                .addGroup(txt_painel_principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_campo_valor1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_campo_valor2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txt_campo_radiciacao, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(txt_painel_principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_campo_potencia_base, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_campo_potencia_expoente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(86, 86, 86)
+                .addGroup(txt_painel_principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_botao_calcular, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_operacao, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txt_botao_limpar_e_liberar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        txt_menu_geral.setText("GERAL");
+
+        txt_sub_item_sair.setText("SAIR");
+        txt_sub_item_sair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_sub_item_sairActionPerformed(evt);
+            }
+        });
+        txt_menu_geral.add(txt_sub_item_sair);
+
+        txt_barra_de_menu_principal.add(txt_menu_geral);
+
+        txt_menu_sobre.setText("SOBRE");
+
+        txt_sub_item_info.setText("INFO");
+        txt_sub_item_info.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_sub_item_infoActionPerformed(evt);
+            }
+        });
+        txt_menu_sobre.add(txt_sub_item_info);
+
+        txt_barra_de_menu_principal.add(txt_menu_sobre);
+
+        setJMenuBar(txt_barra_de_menu_principal);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txt_painel_principal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txt_painel_principal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    
+    // BOTÃO CALCULAR:
+    private void txt_botao_calcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_botao_calcularActionPerformed
+    
+        JOptionPane.showMessageDialog(null, "ESTA FUNÇÃO ESTA EM DESENVOLVIMENTO", "AVISO", 2);
+        
+    }//GEN-LAST:event_txt_botao_calcularActionPerformed
+
+    
+    // BOTÃO LIMPAR E LIBERAR:
+    private void txt_botao_limpar_e_liberarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_botao_limpar_e_liberarActionPerformed
+        
+        JOptionPane.showMessageDialog(null, "ESTA FUNÇÃO ESTA EM DESENVOLVIMENTO", "AVISO", 2);
+        
+    }//GEN-LAST:event_txt_botao_limpar_e_liberarActionPerformed
+
+    
+    // SUB ITEM DE MENU - SAIR - [ MENU GERAL ]:
+    private void txt_sub_item_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_sub_item_sairActionPerformed
+        
+        JOptionPane.showMessageDialog(null, "ESTA FUNÇÃO ESTA EM DESENVOLVIMENTO", "AVISO", 2);
+        
+    }//GEN-LAST:event_txt_sub_item_sairActionPerformed
+
+    
+    // SUB ITEM DE MENU - INFO - [ MENU SOBRE ]:
+    private void txt_sub_item_infoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_sub_item_infoActionPerformed
+        
+        JOptionPane.showMessageDialog(null, "ESTA FUNÇÃO ESTA EM DESENVOLVIMENTO", "AVISO", 2);
+        
+    }//GEN-LAST:event_txt_sub_item_infoActionPerformed
 
     
     /**
@@ -85,6 +257,21 @@ public class SimpleCalculatorJavaObjectForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuBar txt_barra_de_menu_principal;
+    private javax.swing.JButton txt_botao_calcular;
+    private javax.swing.JButton txt_botao_limpar_e_liberar;
+    private javax.swing.JTextField txt_campo_potencia_base;
+    private javax.swing.JTextField txt_campo_potencia_expoente;
+    private javax.swing.JTextField txt_campo_radiciacao;
+    private javax.swing.JLabel txt_campo_resultado;
+    private javax.swing.JTextField txt_campo_valor1;
+    private javax.swing.JTextField txt_campo_valor2;
+    private javax.swing.JMenu txt_menu_geral;
+    private javax.swing.JMenu txt_menu_sobre;
+    private javax.swing.JComboBox<String> txt_operacao;
+    private javax.swing.JPanel txt_painel_principal;
+    private javax.swing.JMenuItem txt_sub_item_info;
+    private javax.swing.JMenuItem txt_sub_item_sair;
     // End of variables declaration//GEN-END:variables
 }
 
