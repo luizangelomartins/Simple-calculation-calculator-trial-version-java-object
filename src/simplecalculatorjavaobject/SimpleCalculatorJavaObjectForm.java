@@ -8,17 +8,54 @@
 // PACOTE DA CLASSE:
 package simplecalculatorjavaobject;
 
+
+// IMPORTAÇÃO DE BIBLIOTECAS:
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.plaf.basic.BasicComboBoxRenderer;
 
 
 // MÉTODO PRINCIPAL DA CLASSE:
 public class SimpleCalculatorJavaObjectForm extends javax.swing.JFrame {
 
     
+    // DECLARAÇÃO DE VARIAVEIS E OBJETOS:
+    BasicComboBoxRenderer.UIResource UIResource = new BasicComboBoxRenderer.UIResource();  
+    
+    
     // " INICIALIZADOR ":
     public SimpleCalculatorJavaObjectForm() {
         
         initComponents();
+        ImageIcon icone = new ImageIcon(getClass().getResource("/icones/calculator_add.png"));
+        setIconImage(icone.getImage());
+        
+        txt_campo_resultado.setHorizontalAlignment(javax.swing.JLabel.CENTER);
+        txt_campo_potencia_base.setHorizontalAlignment(javax.swing.JLabel.CENTER);
+        txt_campo_potencia_expoente.setHorizontalAlignment(javax.swing.JLabel.CENTER);
+        txt_campo_radiciacao.setHorizontalAlignment(javax.swing.JLabel.CENTER);
+        txt_campo_valor1.setHorizontalAlignment(javax.swing.JLabel.CENTER);
+        txt_campo_valor2.setHorizontalAlignment(javax.swing.JLabel.CENTER);
+        
+        UIResource.setHorizontalAlignment(SwingConstants.CENTER);  
+        txt_operacao.setRenderer(UIResource);
+        txt_operacao.removeAllItems();
+        
+        int contador_numerico = 0;
+        while( contador_numerico != 6 ) {
+        
+            if( contador_numerico == 0 ) { txt_operacao.addItem("DIVISÃO"); }
+            if( contador_numerico == 1 ) { txt_operacao.addItem("MULTIPLICAÇÃO"); }
+            if( contador_numerico == 2 ) { txt_operacao.addItem("POTÊNCIAÇÃO"); }
+            if( contador_numerico == 3 ) { txt_operacao.addItem("RADICIAÇÃO"); }
+            if( contador_numerico == 4 ) { txt_operacao.addItem("SOMA"); }
+            if( contador_numerico == 5 ) { txt_operacao.addItem("SUBTRAÇÃO"); }
+            contador_numerico++;
+            
+        }
+        
+        txt_operacao.setSelectedIndex(4);
         
     }
 
@@ -48,13 +85,14 @@ public class SimpleCalculatorJavaObjectForm extends javax.swing.JFrame {
         txt_menu_sobre = new javax.swing.JMenu();
         txt_sub_item_info = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("CALCULADORA SIMPLES");
         setResizable(false);
 
         txt_painel_principal.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "- EXIBIÇÃO GERAL -", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
 
         txt_botao_limpar_e_liberar.setBackground(new java.awt.Color(153, 153, 255));
+        txt_botao_limpar_e_liberar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/calculator_delete.png"))); // NOI18N
         txt_botao_limpar_e_liberar.setText("LIMPAR E LIBERAR");
         txt_botao_limpar_e_liberar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         txt_botao_limpar_e_liberar.addActionListener(new java.awt.event.ActionListener() {
@@ -64,6 +102,7 @@ public class SimpleCalculatorJavaObjectForm extends javax.swing.JFrame {
         });
 
         txt_botao_calcular.setBackground(new java.awt.Color(153, 255, 153));
+        txt_botao_calcular.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/calculator_add.png"))); // NOI18N
         txt_botao_calcular.setText("CALCULAR");
         txt_botao_calcular.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         txt_botao_calcular.addActionListener(new java.awt.event.ActionListener() {
@@ -72,6 +111,7 @@ public class SimpleCalculatorJavaObjectForm extends javax.swing.JFrame {
             }
         });
 
+        txt_campo_resultado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/calculator_link.png"))); // NOI18N
         txt_campo_resultado.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "- RESULTADO -", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
 
         txt_operacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -141,8 +181,11 @@ public class SimpleCalculatorJavaObjectForm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        txt_menu_geral.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/script_gear.png"))); // NOI18N
         txt_menu_geral.setText("GERAL");
 
+        txt_sub_item_sair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0));
+        txt_sub_item_sair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/cancel.png"))); // NOI18N
         txt_sub_item_sair.setText("SAIR");
         txt_sub_item_sair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,8 +196,11 @@ public class SimpleCalculatorJavaObjectForm extends javax.swing.JFrame {
 
         txt_barra_de_menu_principal.add(txt_menu_geral);
 
+        txt_menu_sobre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/information.png"))); // NOI18N
         txt_menu_sobre.setText("SOBRE");
 
+        txt_sub_item_info.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
+        txt_sub_item_info.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/error.png"))); // NOI18N
         txt_sub_item_info.setText("INFO");
         txt_sub_item_info.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,7 +238,7 @@ public class SimpleCalculatorJavaObjectForm extends javax.swing.JFrame {
     // BOTÃO CALCULAR:
     private void txt_botao_calcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_botao_calcularActionPerformed
     
-        JOptionPane.showMessageDialog(null, "ESTA FUNÇÃO ESTA EM DESENVOLVIMENTO", "AVISO", 2);
+        JOptionPane.showMessageDialog(null, "ESTA FUNÇÃO ESTA EM DESENVOLVIMENTO!", "AVISO:", 2);
         
     }//GEN-LAST:event_txt_botao_calcularActionPerformed
 
@@ -200,7 +246,7 @@ public class SimpleCalculatorJavaObjectForm extends javax.swing.JFrame {
     // BOTÃO LIMPAR E LIBERAR:
     private void txt_botao_limpar_e_liberarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_botao_limpar_e_liberarActionPerformed
         
-        JOptionPane.showMessageDialog(null, "ESTA FUNÇÃO ESTA EM DESENVOLVIMENTO", "AVISO", 2);
+        JOptionPane.showMessageDialog(null, "ESTA FUNÇÃO ESTA EM DESENVOLVIMENTO!", "AVISO:", 2);
         
     }//GEN-LAST:event_txt_botao_limpar_e_liberarActionPerformed
 
@@ -208,15 +254,29 @@ public class SimpleCalculatorJavaObjectForm extends javax.swing.JFrame {
     // SUB ITEM DE MENU - SAIR - [ MENU GERAL ]:
     private void txt_sub_item_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_sub_item_sairActionPerformed
         
-        JOptionPane.showMessageDialog(null, "ESTA FUNÇÃO ESTA EM DESENVOLVIMENTO", "AVISO", 2);
-        
+        int confirmar_sair = 0;
+        confirmar_sair = 0;
+        confirmar_sair = JOptionPane.showConfirmDialog(null, "REALMENTE DESEJA SAIR ?");
+
+        if ( confirmar_sair == 0 ) {
+
+            this.dispose();
+
+        }
+
     }//GEN-LAST:event_txt_sub_item_sairActionPerformed
 
     
     // SUB ITEM DE MENU - INFO - [ MENU SOBRE ]:
     private void txt_sub_item_infoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_sub_item_infoActionPerformed
         
-        JOptionPane.showMessageDialog(null, "ESTA FUNÇÃO ESTA EM DESENVOLVIMENTO", "AVISO", 2);
+        JOptionPane.showMessageDialog(null, "PROJETO DE CALCULOS QUE CONSISTE EM:\n"
+                + " - DIVISÃO,\n"
+                + " - MULTIPLICAÇÃO,\n"
+                + " - POTÊNCIAÇÃO,\n"
+                + " - RADICIAÇÃO,\n"
+                + " - SOMA,\n"
+                + " - SUBTRAÇÃO.", "INFORMAÇÃO:", 1);
         
     }//GEN-LAST:event_txt_sub_item_infoActionPerformed
 
