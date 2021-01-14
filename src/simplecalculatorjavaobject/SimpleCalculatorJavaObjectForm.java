@@ -10,6 +10,8 @@ package simplecalculatorjavaobject;
 
 
 // IMPORTAÇÃO DE BIBLIOTECAS:
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
@@ -30,7 +32,14 @@ public class SimpleCalculatorJavaObjectForm extends javax.swing.JFrame {
         initComponents();
         ImageIcon icone = new ImageIcon(getClass().getResource("/icones/calculator_add.png"));
         setIconImage(icone.getImage());
+        txt_botao_limpar_e_liberar.setEnabled(false);
         
+        txt_campo_valor1.setText("");
+        txt_campo_valor2.setText("");
+        txt_campo_radiciacao.setText("");
+        txt_campo_potencia_base.setText("");
+        txt_campo_potencia_expoente.setText("");
+                
         txt_campo_resultado.setHorizontalAlignment(javax.swing.JLabel.CENTER);
         txt_campo_potencia_base.setHorizontalAlignment(javax.swing.JLabel.CENTER);
         txt_campo_potencia_expoente.setHorizontalAlignment(javax.swing.JLabel.CENTER);
@@ -238,15 +247,300 @@ public class SimpleCalculatorJavaObjectForm extends javax.swing.JFrame {
     // BOTÃO CALCULAR:
     private void txt_botao_calcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_botao_calcularActionPerformed
     
-        JOptionPane.showMessageDialog(null, "ESTA FUNÇÃO ESTA EM DESENVOLVIMENTO!", "AVISO:", 2);
+        int confirmar_calculo = 0;
+        int operacao1 = 0;
+        String operacao2 = "";
+        confirmar_calculo = 0;
+        operacao1 = txt_operacao.getSelectedIndex();
         
+        if( operacao1 == 0 ) { operacao2 = "DIVISÃO"; }
+        if( operacao1 == 1 ) { operacao2 = "MULTIPLICAÇÃO"; }
+        if( operacao1 == 2 ) { operacao2 = "POTÊNCIAÇÃO"; }
+        if( operacao1 == 3 ) { operacao2 = "RADICIAÇÃO"; }
+        if( operacao1 == 4 ) { operacao2 = "SOMA"; }
+        if( operacao1 == 5 ) { operacao2 = "SUBTRAÇÃO"; }
+        
+        confirmar_calculo = JOptionPane.showConfirmDialog(null, "DESEJA CONTINUAR COM A " + operacao2 + " ?");
+
+        if ( confirmar_calculo == 0 ) {
+
+            // DIVISÃO:
+            if( operacao1 == 0 ) { 
+                
+                if( !txt_campo_valor1.getText().trim().equals("") && !txt_campo_valor2.getText().trim().equals("")) {
+                    
+                    try {
+                        
+                        double val1 = 0;
+                        double val2 = 0;
+                        double resultado = 0;
+
+                        val1 = Double.valueOf(txt_campo_valor1.getText());
+                        val2 = Double.valueOf(txt_campo_valor2.getText());
+                        resultado = val1 / val2;
+                        BigDecimal arredondar_resultado = new BigDecimal(resultado).setScale(2, RoundingMode.HALF_EVEN);
+                        txt_campo_resultado.setText(" " + String.valueOf(arredondar_resultado.doubleValue()));
+                        
+                        txt_botao_calcular.setEnabled(false);
+                        txt_campo_valor1.setEditable(false);
+                        txt_campo_valor2.setEditable(false);
+                        txt_campo_radiciacao.setEditable(false);
+                        txt_campo_potencia_base.setEditable(false);
+                        txt_campo_potencia_expoente.setEditable(false);
+                        txt_operacao.setEnabled(false);
+                        txt_botao_limpar_e_liberar.setEnabled(true);
+                        
+                    } catch( NumberFormatException e) {
+                        
+                        JOptionPane.showMessageDialog(null, "PREENCHA OS CAMPOS COM DADOS CORRETOS!", "ADVERTÊNCIA:", 2);
+                        txt_campo_valor1.setText("");
+                        txt_campo_valor2.setText("");
+                        
+                }
+                    
+                } else {
+                    
+                    JOptionPane.showMessageDialog(null, "PREENCHA TODOS OS CAMPOS NECESSÁRIOS:\n"
+                            + " - VALOR 001,\n"
+                            + " - VALOR 002.", "ADVERTÊNCIA:", 2);
+                    
+                }
+            
+            }
+            
+            // MULTIPLICAÇÃO
+            if( operacao1 == 1 ) { 
+                
+                if( !txt_campo_valor1.getText().trim().equals("") && !txt_campo_valor2.getText().trim().equals("")) {
+                    
+                    try {
+                        
+                        double val1 = 0;
+                        double val2 = 0;
+                        double resultado = 0;
+
+                        val1 = Double.valueOf(txt_campo_valor1.getText());
+                        val2 = Double.valueOf(txt_campo_valor2.getText());
+                        resultado = val1 * val2;
+                        BigDecimal arredondar_resultado = new BigDecimal(resultado).setScale(2, RoundingMode.HALF_EVEN);
+                        txt_campo_resultado.setText(" " + String.valueOf(arredondar_resultado.doubleValue()));
+                        
+                        txt_botao_calcular.setEnabled(false);
+                        txt_campo_valor1.setEditable(false);
+                        txt_campo_valor2.setEditable(false);
+                        txt_campo_radiciacao.setEditable(false);
+                        txt_campo_potencia_base.setEditable(false);
+                        txt_campo_potencia_expoente.setEditable(false);
+                        txt_operacao.setEnabled(false);
+                        txt_botao_limpar_e_liberar.setEnabled(true);
+                        
+                    } catch( NumberFormatException e) {
+                        
+                        JOptionPane.showMessageDialog(null, "PREENCHA OS CAMPOS COM DADOS CORRETOS!", "ADVERTÊNCIA:", 2);
+                        txt_campo_valor1.setText("");
+                        txt_campo_valor2.setText("");
+                        
+                }
+                    
+                } else {
+                    
+                    JOptionPane.showMessageDialog(null, "PREENCHA TODOS OS CAMPOS NECESSÁRIOS:\n"
+                            + " - VALOR 001,\n"
+                            + " - VALOR 002.", "ADVERTÊNCIA:", 2);
+                    
+                }
+                
+            }
+            
+            // POTENCIAÇÃO:
+            if( operacao1 == 2 ) { 
+                
+                if( !txt_campo_potencia_base.getText().trim().equals("") && !txt_campo_potencia_expoente.getText().trim().equals("")) {
+                    
+                    try {
+                        
+                        double val1 = 0;
+                        double val2 = 0;
+                        double resultado = 0;
+
+                        val1 = Double.valueOf(txt_campo_potencia_base.getText());
+                        val2 = Double.valueOf(txt_campo_potencia_expoente.getText());
+                        resultado = Math.pow(val1, val2);
+                        BigDecimal arredondar_resultado = new BigDecimal(resultado).setScale(2, RoundingMode.HALF_EVEN);
+                        txt_campo_resultado.setText(" " + String.valueOf(arredondar_resultado.doubleValue()));
+                        
+                        txt_botao_calcular.setEnabled(false);
+                        txt_campo_valor1.setEditable(false);
+                        txt_campo_valor2.setEditable(false);
+                        txt_campo_radiciacao.setEditable(false);
+                        txt_campo_potencia_base.setEditable(false);
+                        txt_campo_potencia_expoente.setEditable(false);
+                        txt_operacao.setEnabled(false);
+                        txt_botao_limpar_e_liberar.setEnabled(true);
+                        
+                    } catch( NumberFormatException e) {
+                        
+                        JOptionPane.showMessageDialog(null, "PREENCHA OS CAMPOS COM DADOS CORRETOS!", "ADVERTÊNCIA:", 2);
+                        txt_campo_potencia_base.setText("");
+                        txt_campo_potencia_expoente.setText("");
+                        
+                }
+                    
+                } else {
+                    
+                    JOptionPane.showMessageDialog(null, "PREENCHA TODOS OS CAMPOS NECESSÁRIOS:\n"
+                            + " - POTENCIA - [ BAS ],\n"
+                            + " - POTENCIA - [ EXP ].", "ADVERTÊNCIA:", 2);
+                    
+                }
+                
+            }
+            
+            // RADICIAÇÃO:
+            if( operacao1 == 3 ) { 
+                
+                if( !txt_campo_radiciacao.getText().trim().equals("")) {
+                    
+                    try {
+                        
+                        double val1 = 0;
+                        double resultado = 0;
+
+                        val1 = Double.valueOf(txt_campo_radiciacao.getText());
+                        resultado = Math.sqrt(val1);
+                        BigDecimal arredondar_resultado = new BigDecimal(resultado).setScale(2, RoundingMode.HALF_EVEN);
+                        txt_campo_resultado.setText(" " + String.valueOf(arredondar_resultado.doubleValue()));
+                        
+                        txt_botao_calcular.setEnabled(false);
+                        txt_campo_valor1.setEditable(false);
+                        txt_campo_valor2.setEditable(false);
+                        txt_campo_radiciacao.setEditable(false);
+                        txt_campo_potencia_base.setEditable(false);
+                        txt_campo_potencia_expoente.setEditable(false);
+                        txt_operacao.setEnabled(false);
+                        txt_botao_limpar_e_liberar.setEnabled(true);
+                        
+                    } catch( NumberFormatException e) {
+                        
+                        JOptionPane.showMessageDialog(null, "PREENCHA OS CAMPOS COM DADOS CORRETOS!", "ADVERTÊNCIA:", 2);
+                        txt_campo_radiciacao.setText("");
+                        
+                }
+                    
+                } else {
+                    
+                    JOptionPane.showMessageDialog(null, "PREENCHA TODOS OS CAMPOS NECESSÁRIOS:\n"
+                            + " - RADICIAÇÃO.", "ADVERTÊNCIA:", 2);
+                    
+                }
+                
+            }
+            
+            // ADIÇÃO:
+            if( operacao1 == 4 ) { 
+            
+                if( !txt_campo_valor1.getText().trim().equals("") && !txt_campo_valor2.getText().trim().equals("")) {
+                    
+                    try {
+                        
+                        double val1 = 0;
+                        double val2 = 0;
+                        double resultado = 0;
+
+                        val1 = Double.valueOf(txt_campo_valor1.getText());
+                        val2 = Double.valueOf(txt_campo_valor2.getText());
+                        resultado = val1 + val2;
+                        BigDecimal arredondar_resultado = new BigDecimal(resultado).setScale(2, RoundingMode.HALF_EVEN);
+                        txt_campo_resultado.setText(" " + String.valueOf(arredondar_resultado.doubleValue()));
+                        
+                        txt_botao_calcular.setEnabled(false);
+                        txt_campo_valor1.setEditable(false);
+                        txt_campo_valor2.setEditable(false);
+                        txt_campo_radiciacao.setEditable(false);
+                        txt_campo_potencia_base.setEditable(false);
+                        txt_campo_potencia_expoente.setEditable(false);
+                        txt_operacao.setEnabled(false);
+                        txt_botao_limpar_e_liberar.setEnabled(true);
+                        
+                    } catch( NumberFormatException e) {
+                        
+                        JOptionPane.showMessageDialog(null, "PREENCHA OS CAMPOS COM DADOS CORRETOS!", "ADVERTÊNCIA:", 2);
+                        txt_campo_valor1.setText("");
+                        txt_campo_valor2.setText("");
+                        
+                }
+                    
+                } else {
+                    
+                    JOptionPane.showMessageDialog(null, "PREENCHA TODOS OS CAMPOS NECESSÁRIOS:\n"
+                            + " - VALOR 001,\n"
+                            + " - VALOR 002.", "ADVERTÊNCIA:", 2);
+                    
+                }
+                
+            }
+            
+            // SUBTRAÇÃO:
+            if( operacao1 == 5 ) { 
+                
+                if( !txt_campo_valor1.getText().trim().equals("") && !txt_campo_valor2.getText().trim().equals("")) {
+                    
+                    try {
+                        
+                        double val1 = 0;
+                        double val2 = 0;
+                        double resultado = 0;
+
+                        val1 = Double.valueOf(txt_campo_valor1.getText());
+                        val2 = Double.valueOf(txt_campo_valor2.getText());
+                        resultado = val1 - val2;
+                        BigDecimal arredondar_resultado = new BigDecimal(resultado).setScale(2, RoundingMode.HALF_EVEN);
+                        txt_campo_resultado.setText(" " + String.valueOf(arredondar_resultado.doubleValue()));
+                        
+                        txt_botao_calcular.setEnabled(false);
+                        txt_campo_valor1.setEditable(false);
+                        txt_campo_valor2.setEditable(false);
+                        txt_campo_radiciacao.setEditable(false);
+                        txt_campo_potencia_base.setEditable(false);
+                        txt_campo_potencia_expoente.setEditable(false);
+                        txt_operacao.setEnabled(false);
+                        txt_botao_limpar_e_liberar.setEnabled(true);
+                        
+                    } catch( NumberFormatException e) {
+                        
+                        JOptionPane.showMessageDialog(null, "PREENCHA OS CAMPOS COM DADOS CORRETOS!", "ADVERTÊNCIA:", 2);
+                        txt_campo_valor1.setText("");
+                        txt_campo_valor2.setText("");
+                        
+                }
+                    
+                } else {
+                    
+                    JOptionPane.showMessageDialog(null, "PREENCHA TODOS OS CAMPOS NECESSÁRIOS:\n"
+                            + " - VALOR 001,\n"
+                            + " - VALOR 002.", "ADVERTÊNCIA:", 2);
+                    
+                }
+                
+            }
+            
+        }
+
     }//GEN-LAST:event_txt_botao_calcularActionPerformed
 
     
     // BOTÃO LIMPAR E LIBERAR:
     private void txt_botao_limpar_e_liberarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_botao_limpar_e_liberarActionPerformed
         
-        JOptionPane.showMessageDialog(null, "ESTA FUNÇÃO ESTA EM DESENVOLVIMENTO!", "AVISO:", 2);
+        txt_campo_resultado.setText(null);
+        txt_botao_calcular.setEnabled(true);
+        txt_campo_valor1.setEditable(true);
+        txt_campo_valor2.setEditable(true);
+        txt_campo_radiciacao.setEditable(true);
+        txt_campo_potencia_base.setEditable(true);
+        txt_campo_potencia_expoente.setEditable(true);
+        txt_operacao.setEnabled(true);
+        txt_botao_limpar_e_liberar.setEnabled(false);
         
     }//GEN-LAST:event_txt_botao_limpar_e_liberarActionPerformed
 
