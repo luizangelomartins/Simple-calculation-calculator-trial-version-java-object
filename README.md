@@ -1,1 +1,7 @@
-@ Simple-calculation-calculator-trial-version-java-object
+PROJETO DE CALCULOS QUE CONSISTE EM:
+- DIVISÃO,
+- MULTIPLICAÇÃO,
+- POTÊNCIAÇÃO,
+- RADICIAÇÃO,
+- SOMA,
+- SUBTRAÇÃO.
